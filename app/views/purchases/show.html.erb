@@ -1,0 +1,18 @@
+<p style="color: green"><%= notice %></p>
+
+<div>
+  <div class="flex items-center">
+    <h1 class="text-4xl my-0 mr-2"><%= Money.new(@purchase.amount, @purchase.currency).format(with_currency: true) %></h1>
+    <%= @purchase.captured? ? success_tag("Captured") : flag_tag("Authorized") %><br />
+  </div>
+
+  <p>
+    <strong>ID</strong>
+    <%= @purchase.id %>
+  </p>
+
+     <div>
+      <%= button_to "Capture Purchase", capture_purchase_path, class: "py-2 px-4 h-10 inline-flex items-center rounded-lg whitespace-nowrap disabled:cursor-not-allowed text-sm active:bg-primary-600 bg-primary-500 text-white disabled:bg-primary-300 mr-2", method: :post %>
+    </div>
+
+</div>

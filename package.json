@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@fat-zebra/zeal": "^3.1.10"
+  },
+  "scripts": {
+    "tailwind": "npx tailwindcss -i node_modules/@fat-zebra/zeal/css/zeal.css -o ./app/assets/stylesheets/zeal.css"
+  }
+}

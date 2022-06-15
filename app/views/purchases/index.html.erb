@@ -1,0 +1,53 @@
+<p style="color: green"><%= notice %></p>
+
+  <h1 class="text-4xl mb-8 mr-2">Purchases</h1>
+  <div class="mb-4">
+    <%= link_to "New authorization", new_purchase_path, class: "py-2 px-4 h-10 inline-flex items-center rounded-lg whitespace-nowrap disabled:cursor-not-allowed text-sm active:bg-primary-600 bg-primary-500 text-white disabled:bg-primary-300 mr-2" %>
+  </div>
+
+<div class="relative overflow-x-auto sm:rounded-lg">
+  <table class="w-full text-sm text-left text-gray-500">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+      <tr>
+        <th scope="col" class="px-6 py-3">
+          Status
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Purchase ID
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Timestamp
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Amount
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Customer
+        </th>
+      </tr>
+
+    </thead>
+    <tbody>
+      <% @purchases.each do |purchase| %>
+        <tr class="bg-white border-b">
+          <td class="px-6 py-3">
+            <%= purchase.captured? ? success_tag("Captured") : flag_tag("Authorized") %><br />
+          </td>
+          <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+              <%= link_to purchase.id, purchase_path(purchase.id) %>
+          </th>
+          <td class="px-6 py-3">
+            <%= time_ago_in_words(purchase.transaction_date) %> ago
+          </td>
+          <td class="px-6 py-3">
+            <%= Money.new(purchase.amount, purchase.currency).format(with_currency: true) %>
+          </td>
+          <td class="px-6 py-3">
+            <%= purchase.card_holder %><br />
+            <%= purchase.card_number.gsub(/X+/, '···').html_safe %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,38 @@
+
+
+<div class="flex py-8 flex-1">
+  <div class='my-10 max-w-[700px] w-full md:px-0 md:w-3/4 lg:w-3/5 mx-auto'>
+    <h1>New Authorization</h1>
+    <%= form_with(url: purchases_path, builder: ZealFormBuilder) do |form| %>
+      <div class="mb-4">
+        <%= form.label :card_holder %>
+        <%= form.text_field :card_holder %>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :card_number %>
+        <%= form.text_field :card_number %>
+      </div>
+
+      <div class="mb-4 grid grid-cols-2 gap-2">
+        <div>
+          <%= form.label :cvv, "CVV" %>
+          <%= form.text_field :cvv %>
+        </div>
+        <div>
+          <%= form.label :card_expiry %>
+          <%= form.text_field :card_expiry %>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <%= form.label :reference %>
+        <%= form.text_field :reference %>
+      </div>
+
+      <div>
+        <%= form.submit "Authorize Purchase", class: "py-2 px-4 h-10 inline-flex items-center rounded-lg whitespace-nowrap disabled:cursor-not-allowed text-sm active:bg-primary-600 bg-primary-500 text-white disabled:bg-primary-300 mr-2" %>
+      </div>
+    <% end %>
+  </div>
+</div>
