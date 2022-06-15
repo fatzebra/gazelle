@@ -3,7 +3,12 @@
 <div class="flex py-8 flex-1">
   <div class='my-10 max-w-[700px] w-full md:px-0 md:w-3/4 lg:w-3/5 mx-auto'>
     <h1>New Authorization</h1>
-    <%= form_with(url: purchases_path, builder: ZealFormBuilder) do |form| %>
+    <%= form_with(url: purchases_path, builder: ZealFormBuilder, scope: :purchase) do |form| %>
+      <div class="mb-4">
+        <%= form.label :amount %>
+        <%= form.text_field :amount %>
+      </div>
+
       <div class="mb-4">
         <%= form.label :card_holder %>
         <%= form.text_field :card_holder %>
